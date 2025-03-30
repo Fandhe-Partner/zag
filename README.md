@@ -76,8 +76,8 @@ import * as toggle from "@zag-js/toggle-group"
 import { useId } from "react"
 
 export function ToggleGroup() {
-  const [state, send] = useMachine(toggle.machine({ id: useId() }))
-  const api = toggle.connect(state, send, normalizeProps)
+  const service = useMachine(toggle.machine, { id: useId() })
+  const api = toggle.connect(service, normalizeProps)
 
   return (
     <div {...api.getRootProps()}>
@@ -85,7 +85,7 @@ export function ToggleGroup() {
       <button {...api.getItemProps({ value: "italic" })}>I</button>
       <button {...api.getItemProps({ value: "underline" })}>U</button>
     </div>
-  )
+  ) 
 }
 ```
 
